@@ -126,11 +126,11 @@ Dashboards are built in Tableau Public and designed for exploratory comparison r
 ```
 PaymentRails/
 ├── src/
-│   ├── load_stock_prices.py
-│   ├── load_financials.py
-│   ├── transform_data.py
-│   ├── build_metrics.py
-│   └── export_for_tableau.py
+│   ├── StockLoad.py
+│   ├── FinancialLoad.py
+│   ├── DataTransformation.py
+│   ├── MetricsBuild.py
+│   └── TableauExport.py
 ├── data/
 │   ├── raw/
 │   ├── processed/
