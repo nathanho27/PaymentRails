@@ -27,7 +27,7 @@ Market and competitive analysis of global payment networks, focusing on Visa and
 
 **In Progress**
 
-Project scaffolding and documentation are complete. Historical stock price data ingestion and indexing for Visa and Mastercard is planned as the first analytical step. Financial and transaction-scale metrics will be compiled from public filings and aggregated sources. Interactive dashboard development in Tableau Public will follow once core datasets are finalized.
+Project scaffolding, SQL schema design, and documentation are complete. Historical stock price data ingestion and indexing for Visa and Mastercard is planned as the first analytical step. Financial and transaction-scale metrics will be compiled from public filings and aggregated sources. Interactive dashboard development in Tableau Public will follow once core datasets are finalized.
 
 ---
 
@@ -69,19 +69,21 @@ Visa and Mastercard represent two of the largest and most established players in
 ## Methodology
 
 - Pull raw market and financial data using Python  
-- Clean and normalize datasets using Excel and Power Query where appropriate  
-- Compute derived metrics and comparative measures in Python  
+- Clean and normalize datasets using SQL and Excel where appropriate  
+- Compute derived metrics using a combination of SQL analytics queries and Python 
 - Export analysis-ready tables for Tableau Public  
 
 ---
 
 ## Tools & Technologies
 
-- Python  
-- pandas  
-- Excel / Power Query  
-- Tableau Public  
-- Git & GitHub  
+- Python (data ingestion, transformation, metric construction)
+- MySQL (schema design and analytics queries)
+- SQL
+- pandas
+- Excel / Power Query (financial modeling and validation)
+- Tableau Public
+- Git & GitHub
 
 ---
 
@@ -126,18 +128,30 @@ Dashboards are built in Tableau Public and designed for exploratory comparison r
 ```
 PaymentRails/
 ├── src/
-│   ├── StockLoad.py
-│   ├── FinancialLoad.py
-│   ├── DataTransformation.py
-│   ├── MetricsBuild.py
-│   └── TableauExport.py
+│   ├── __init__.py
+│   ├── stock_load.py
+│   ├── financial_load.py
+│   ├── data_transformation.py
+│   ├── metrics_build.py
+│   └── tableau_export.py
+│
 ├── data/
 │   ├── raw/
 │   ├── processed/
 │   └── analytics/
+│
+├── sql/
+│   ├── analytics/
+│   │   ├── daily_returns.sql
+│   │   └── volatility.sql
+│   └── schema/
+│       ├── raw_market_prices.sql
+│       └── clean_market_prices.sql
+│
 ├── dashboards/
 ├── docs/
-├── README.md
+├── excel/
+└── README.md
 ```
 
 ---

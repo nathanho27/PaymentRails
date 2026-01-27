@@ -1,0 +1,1 @@
+-- Defines cleaned market price table used for downstream analytics

@@ -1,0 +1,1 @@
+-- Defines schema for raw market price data loaded from external sources
