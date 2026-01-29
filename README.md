@@ -62,14 +62,14 @@ Visa and Mastercard represent two of the largest and most established players in
 - Historical stock price data from Yahoo Finance  
 - Financial statement data from public company filings  
 - Aggregated financial datasets summarizing revenue and margins  
-- Annual reports and investor materials for business context  
+- Annual reports and investor materials for the business context  
 
 ---
 
 ## Methodology
 
 - Pull raw market and financial data using Python  
-- Clean and normalize datasets using SQL and Excel where appropriate  
+- Clean and normalize datasets using SQL and Excel  
 - Compute derived metrics using a combination of SQL analytics queries and Python 
 - Export analysis-ready tables for Tableau Public  
 
@@ -77,11 +77,11 @@ Visa and Mastercard represent two of the largest and most established players in
 
 ## Tools & Technologies
 
-- Python (data ingestion, transformation, metric construction)
-- MySQL (schema design and analytics queries)
+- Python
+- MySQL
 - SQL
 - pandas
-- Excel / Power Query (financial modeling and validation)
+- Excel / Power Query
 - Tableau Public
 - Git & GitHub
 
