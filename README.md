@@ -168,3 +168,5 @@ PaymentRails/
 ## Notes & Limitations
 
 This project uses public financial data and focuses on descriptive, comparative analysis rather than forecasting or investment recommendations.
+
+This project marks a shift in my Python coding style, where I moved from CamelCase to snake_case for functions, variables, and filenames to align with Python consistency.
