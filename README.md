@@ -144,6 +144,7 @@ PaymentRails/
 │   ├── analytics/
 │   │   ├── daily_returns.sql
 │   │   └── volatility.sql
+│   │   └── market_metrics.sql
 │   └── schema/
 │       ├── raw_market_prices.sql
 │       └── clean_market_prices.sql
