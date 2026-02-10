@@ -16,4 +16,5 @@ LEFT JOIN daily_returns r
   ON p.date = r.date AND p.ticker = r.ticker
 LEFT JOIN rolling_volatility v
   ON p.date = v.date AND p.ticker = v.ticker
+WHERE p.ticker IN ('V', 'MA', '^GSPC')
 ORDER BY p.ticker, p.date;

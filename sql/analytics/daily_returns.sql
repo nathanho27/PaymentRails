@@ -11,7 +11,9 @@ SELECT
   date,
   ticker,
   adj_close,
-  (adj_close / LAG(adj_close) OVER (PARTITION BY ticker ORDER BY date) - 1) AS daily_return
-FROM clean_market_prices
-ORDER BY ticker, date;
+  (adj_close / LAG(adj_close) OVER (
+      PARTITION BY ticker
+      ORDER BY date
+  ) - 1) AS daily_return
+FROM clean_market_prices;
 

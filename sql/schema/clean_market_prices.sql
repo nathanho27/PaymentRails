@@ -12,8 +12,6 @@ SELECT
   UPPER(ticker) AS ticker,
   adj_close
 FROM raw_market_prices
-WHERE
-  date IS NOT NULL
+WHERE date IS NOT NULL
   AND ticker IS NOT NULL
-  AND adj_close IS NOT NULL
-ORDER BY ticker, date;
+  AND adj_close IS NOT NULL;
