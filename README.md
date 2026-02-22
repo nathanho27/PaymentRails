@@ -18,6 +18,7 @@ Market and competitive analysis of global payment networks, focusing on Visa and
 - [Dashboards](#dashboards)
 - [Visualization Approach](#visualization-approach)
 - [Project Structure](#project-structure)
+- [Current Progress](#current-progress)
 - [Planned Work](#planned-work)
 - [Notes & Limitations](#notes--limitations)
 
@@ -26,8 +27,7 @@ Market and competitive analysis of global payment networks, focusing on Visa and
 ## Status
 
 **In Progress**
-
-Project scaffolding, SQL schema design, and documentation are complete. Historical stock price data ingestion and indexing for Visa and Mastercard is planned as the first analytical step. Financial and transaction-scale metrics will be compiled from public filings and aggregated sources. Interactive dashboard development in Tableau Public will follow once core datasets are finalized.
+Core data pipeline is implemented, including Python-based market data ingestion, MySQL schema design, and SQL analytics views for daily returns and rolling volatility. A BI-ready analytics table has been generated for visualization in Excel and Tableau. Dashboard development is currently underway.
 
 ---
 
@@ -41,7 +41,7 @@ Using publicly available market and financial data, the project compares how the
 
 ## Analytical Objectives
 
-- Compare long-term market performance of Visa and Mastercard  
+- Compare the long-term market performance of Visa and Mastercard  
 - Analyze differences in scale, revenue growth, and profitability  
 - Examine tradeoffs between growth, stability, and margin durability  
 - Identify structural similarities and differences between payment network models  
@@ -70,7 +70,7 @@ Visa and Mastercard represent two of the largest and most established players in
 
 - Pull raw market and financial data using Python  
 - Clean and normalize datasets using SQL and Excel  
-- Compute derived metrics using a combination of SQL analytics queries and Python 
+- Compute derived metrics (daily returns, rolling volatility) using SQL analytics views, with Python used for ingestion and export of BI-ready datasets.
 - Export analysis-ready tables for Tableau Public  
 
 ---
@@ -143,7 +143,7 @@ PaymentRails/
 ├── sql/
 │   ├── analytics/
 │   │   ├── daily_returns.sql
-│   │   └── volatility.sql
+│   │   ├── volatility.sql
 │   │   └── market_metrics.sql
 │   └── schema/
 │       ├── raw_market_prices.sql
@@ -157,6 +157,11 @@ PaymentRails/
 
 ---
 
+## Current Progress
+- Implemented Python ingestion for Visa, Mastercard, and market index data  
+- Built MySQL analytics layer with daily returns and rolling volatility  
+- Exported final analytics table for visualization in Excel and Tableau
+  
 ## Planned Work
 
 - Ingest and index historical stock price data  
