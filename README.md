@@ -27,7 +27,7 @@ Market and competitive analysis of global payment networks, focusing on Visa and
 ## Status
 
 **In Progress**
-Core data pipeline is implemented, including Python-based market data ingestion, MySQL schema design, and SQL analytics views for daily returns and rolling volatility. A BI-ready analytics table has been generated for visualization in Excel and Tableau. Dashboard development is currently underway.
+Core data pipeline is implemented, including Python-based market data ingestion, MySQL schema design, and SQL analytics views for daily returns and rolling volatility. A BI-ready analytics table has been generated for visualization in Excel and Tableau. Dashboard development is currently underway. Excel will be the first dashboard to be created.
 
 ---
 
@@ -165,7 +165,8 @@ PaymentRails/
 ## Planned Work
 
 - Ingest and index historical stock price data  
-- Compile and standardize financial metrics  
+- Compile and standardize financial metrics
+- Build an Excel dashboard
 - Build Tableau Public dashboards  
 - Refine insights as visuals are completed  
 
