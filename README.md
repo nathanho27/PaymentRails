@@ -18,6 +18,7 @@ Market and competitive analysis of global payment networks, focusing on Visa and
 - [Dashboards](#dashboards)
 - [Visualization Approach](#visualization-approach)
 - [Project Structure](#project-structure)
+- [How to Run](#how-to-run)
 - [Current Progress](#current-progress)
 - [Planned Work](#planned-work)
 - [Notes & Limitations](#notes--limitations)
@@ -27,7 +28,7 @@ Market and competitive analysis of global payment networks, focusing on Visa and
 ## Status
 
 **In Progress**
-Core data pipeline is implemented, including Python-based market data ingestion, MySQL schema design, and SQL analytics views for daily returns and rolling volatility. A BI-ready analytics table has been generated for visualization in Excel and Tableau. Dashboard development is currently underway. Excel will be the first dashboard to be created.
+Core data pipeline is implemented, including Python-based market data ingestion, MySQL schema design, and SQL analytics views for daily returns and rolling volatility. A BI-ready analytics table has been generated for visualization in Excel and Tableau. Dashboard development is currently underway. Dashboard development is underway, beginning with a structured one-sheet Excel dashboard before Tableau implementation.
 
 ---
 
@@ -70,7 +71,7 @@ Visa and Mastercard represent two of the largest and most established players in
 
 - Pull raw market and financial data using Python  
 - Clean and normalize datasets using SQL and Excel  
-- Compute derived metrics (daily returns, rolling volatility) using SQL analytics views, with Python used for ingestion and export of BI-ready datasets.
+- Compute derived metrics (daily returns, rolling volatility) using SQL window functions, with Python used for ingestion and export of BI-ready datasets.
 - Export analysis-ready tables for Tableau Public  
 
 ---
@@ -154,6 +155,21 @@ PaymentRails/
 ├── excel/
 └── README.md
 ```
+## How to Run
+
+1. Pull historical market data: python src/stock_load.py
+2. Load `data/raw/market_prices.csv` into MySQL.
+
+3. Execute SQL schema and analytics scripts:
+- `raw_market_prices.sql`
+- `clean_market_prices.sql`
+- `daily_returns.sql`
+- `volatility.sql`
+- `market_metrics.sql`
+
+4. Export the analytics-ready table for visualization.
+
+5. Load the final dataset into Excel or Tableau for dashboard development.
 
 ---
 
@@ -164,11 +180,11 @@ PaymentRails/
   
 ## Planned Work
 
-- Ingest and index historical stock price data  
-- Compile and standardize financial metrics
-- Build an Excel dashboard
-- Build Tableau Public dashboards  
-- Refine insights as visuals are completed  
+- Extend analytics to include rolling beta versus market benchmark  
+- Integrate financial statement fundamentals (revenue, margins)  
+- Build a one-sheet Excel dashboard  
+- Develop interactive Tableau Public dashboards  
+- Refine competitive positioning analysis and narrative insights 
 
 ---
 
