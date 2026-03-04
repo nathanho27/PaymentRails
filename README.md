@@ -28,7 +28,10 @@ Market and competitive analysis of global payment networks, focusing on Visa and
 ## Status
 
 **In Progress**
-Core data pipeline is implemented, including Python-based market data ingestion, MySQL schema design, and SQL analytics views for daily returns and rolling volatility. A BI-ready analytics table has been generated for visualization in Excel and Tableau. Dashboard development is currently underway. Dashboard development is underway, beginning with a structured one-sheet Excel dashboard before Tableau implementation.
+
+The core data pipeline is complete. Python scripts ingest market and financial data, MySQL is used to compute analytics metrics (daily returns and rolling volatility), and final BI-ready datasets are exported for visualization.
+
+Current focus is on building visualization dashboards using Tableau and Excel.
 
 ---
 
@@ -70,7 +73,7 @@ Visa and Mastercard represent two of the largest and most established players in
 ## Methodology
 
 - Pull raw market and financial data using Python  
-- Clean and normalize datasets using SQL and Excel  
+- Clean and normalize datasets using SQL transformations
 - Compute derived metrics (daily returns, rolling volatility) using SQL window functions, with Python used for ingestion and export of BI-ready datasets.
 - Export analysis-ready tables for Tableau Public  
 
@@ -175,15 +178,14 @@ PaymentRails/
 ## Current Progress
 - Implemented Python ingestion for Visa, Mastercard, and market index data  
 - Built MySQL analytics layer with daily returns and rolling volatility  
-- Exported final analytics table for visualization in Excel and Tableau
+- Created financial fundamentals dataset (revenue, income, margins)  
+- Exported BI-ready datasets for visualization in Excel and Tableau
   
 ## Planned Work
-
-- Extend analytics to include rolling beta versus market benchmark  
-- Integrate financial statement fundamentals (revenue, margins)  
-- Build a one-sheet Excel dashboard  
+- Build a one-sheet Excel dashboard
 - Develop interactive Tableau Public dashboards  
-- Refine competitive positioning analysis and narrative insights 
+- Extend analytics with additional risk metrics (e.g., rolling beta)  
+- Refine competitive positioning insights
 
 ---
 
