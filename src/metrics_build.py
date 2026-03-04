@@ -13,12 +13,15 @@ from pathlib import Path
 def build_summary_metrics(df):
     summary = (
         df.groupby("ticker")
-          .agg(
-              avg_daily_return=("daily_return", "mean"),
-              avg_rolling_volatility=("rolling_30d_volatility", "mean"),
-              max_rolling_volatility=("rolling_30d_volatility", "max")
-          )
-          .reset_index()
+        .agg(
+            avg_daily_return=("daily_return", "mean"),
+            avg_rolling_volatility=("rolling_30d_volatility", "mean"),
+            max_rolling_volatility=("rolling_30d_volatility", "max"),
+            max_drawdown=("drawdown", "min"),
+            avg_90d_momentum=("rolling_90d_return", "mean"),
+            final_cumulative_return=("cumulative_return", "last")
+        )
+        .reset_index()
     )
 
     return summary

@@ -23,7 +23,7 @@ def export_market_metrics(db_uri, output_path="data/analytics/market_metrics.csv
 
 # The main function defines the database connection string and calls the export_market_metrics function to perform the export.
 def main():
-    db_uri = "mysql+mysqlconnector://root:YOUR_PASSWORD@localhost:3306/paymentrails"
+    db_uri = "mysql+mysqlconnector://root:yourpassword@localhost:3306/paymentrails"
     export_market_metrics(db_uri)
 
 # The script can be run directly to refresh the analytics export.

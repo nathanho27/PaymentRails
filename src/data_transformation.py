@@ -1,14 +1,18 @@
 """
-This script contains advanced transformation logic applied to analytics datasets,
-such as rolling beta calculations or regime labeling.
+This script contains advanced transformation logic that may be applied to
+analytics datasets in future iterations of the project.
 
-These transformations are intended to support more advanced analysis and
-dashboard views in later stages of the project.
+Examples include:
+- rolling beta calculations
+- market regime labeling
+- factor exposure metrics
+
+These transformations are not required for the current dashboard build,
+but the module is kept to support future analytics expansion.
 """
 
 import pandas as pd
 
-
-# The compute_rolling_beta function will compute rolling beta values for each payment network relative to a market benchmark.
+# Placeholder for future advanced metrics
 def compute_rolling_beta(df, market_ticker="^GSPC"):
     raise NotImplementedError("Rolling beta computation not implemented yet.")

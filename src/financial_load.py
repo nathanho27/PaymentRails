@@ -1,43 +1,71 @@
 """
 This script loads and standardizes financial fundamentals for Visa and Mastercard.
 
-The goal is to output raw financial metrics (e.g., revenue, margins) to:
-data/raw/financials.csv
+The goal is to create a structured dataset of yearly financial metrics that can
+be used in dashboards alongside market performance data.
 
-This will later be used to enrich market performance analysis with
-business context.
+Output:
+data/raw/financials.csv
+"""
+
+"""
+This script loads and standardizes financial fundamentals for Visa and Mastercard.
+
+The goal is to create a structured dataset of yearly financial metrics that can
+be used in dashboards alongside market performance data.
+
+Output:
+data/analytics/financials.csv
 """
 
 import pandas as pd
+import yfinance as yf
 from pathlib import Path
 
 
-# The get_financials function is a placeholder for loading financial data from public sources (e.g., financial statements, APIs).
+# The get_financials function pulls annual financial statement data and extracts
+# key metrics such as revenue, operating income, and net income.
 def get_financials(tickers):
-    # Placeholder implementation
-    data = {
-        "ticker": tickers,
-        "revenue": [None for _ in tickers],
-        "operating_margin": [None for _ in tickers]
-    }
+    records = []
+    for ticker in tickers:
+        t = yf.Ticker(ticker)
+        financials = t.financials.T
+        for date, row in financials.iterrows():
+            revenue = row.get("Total Revenue")
+            operating_income = row.get("Operating Income")
+            net_income = row.get("Net Income")
+            operating_margin = None
+            if revenue and operating_income:
+                operating_margin = operating_income / revenue
+            records.append({
+                "ticker": ticker,
+                "year": date.year,
+                "revenue": revenue,
+                "operating_income": operating_income,
+                "net_income": net_income,
+                "operating_margin": operating_margin
+            })
 
-    return pd.DataFrame(data)
+    df = pd.DataFrame(records)
+    # Sort values to ensure calculations like growth are applied correctly
+    df = df.sort_values(["ticker","year"])
+    # Net margin measures how much profit is generated per dollar of revenue
+    df["net_margin"] = df["net_income"] / df["revenue"]
+    # Revenue growth measures year-over-year company expansion
+    df["revenue_growth"] = df.groupby("ticker")["revenue"].pct_change()
+    return df
 
-
-# The main function defines the tickers to load fundamentals for and writes the resulting dataset to disk.
+# The main function loads financial data and writes the resulting dataset
+# to the analytics folder for use in dashboards.
 def main():
-    tickers = ["V", "MA"]
+    tickers = ["V","MA"]
     df = get_financials(tickers)
-
-    output_dir = Path("data/raw")
+    output_dir = Path("data/analytics")
     output_dir.mkdir(parents=True, exist_ok=True)
-
     output_path = output_dir / "financials.csv"
     df.to_csv(output_path, index=False)
-
     print(f"Financial data saved to {output_path}")
 
-
-# The script can be run directly to generate the raw financials dataset.
+# Allows the script to be run directly
 if __name__ == "__main__":
     main()

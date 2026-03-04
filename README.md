@@ -138,7 +138,6 @@ PaymentRails/
 │
 ├── data/
 │   ├── raw/
-│   ├── processed/
 │   └── analytics/
 │
 ├── sql/
