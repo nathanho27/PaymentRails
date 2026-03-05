@@ -115,7 +115,7 @@ Visa and Mastercard represent two of the largest and most established players in
 ### 1. Payment Network Market Analysis
 • The published Tableau dashboard can be found [here](https://public.tableau.com/app/profile/nathan.ho2158/viz/PaymentNetworkMarketAnalysis/PaymentNetworkAnalysis)
 
-![Payment Network Market Analysis](dashboards/PaymentMarketAnalysis.png)
+![Payment Network Market Analysis](dashboards/PaymentNetworkAnalysis.png)
 
 This dashboard provides a high-level comparison of Visa and Mastercard across market performance and financial metrics. The goal is to highlight differences in growth, scale, and long-term market behavior between the two payment networks.
 
@@ -175,7 +175,7 @@ PaymentRails/
 │       └── clean_market_prices.sql
 │
 ├── dashboards/
-│   ├── PaymentMarketAnalysis.png
+│   ├── PaymentNetworkAnalysis.png
 │   ├── RiskVsReturnAnalysis.png
 │   └── FinancialPerformanceAnalysis.png
 │
