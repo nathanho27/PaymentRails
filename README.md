@@ -26,29 +26,31 @@ Market and competitive analysis of global payment networks, focusing on Visa and
 
 ## Status
 
-**Completed**
+**In Progress**
 
-The full data pipeline, analytics layer, and visualization components have been implemented.
+The core data pipeline, analytics layer, and primary visualization dashboards have been implemented.
 
-Python scripts ingest market and financial data, MySQL computes market analytics metrics such as daily returns and rolling volatility, and BI-ready datasets are exported for visualization in Tableau and Excel.
+Python scripts ingest market and financial data, a MySQL analytics layer computes derived metrics such as daily returns and volatility, and analysis-ready datasets are exported for use in Tableau and Excel. Interactive dashboards visualize market performance, risk-return dynamics, and financial fundamentals for Visa and Mastercard.
+
+Additional analytical dashboards exploring market correlation and geographic revenue exposure are being developed to extend the comparative analysis.
 
 ---
 
 ## Overview
 
-PaymentRails is a market analytics project that examines how large-scale payment networks compete within the global financial ecosystem. Rather than focusing on consumer-facing payment products, the project frames Visa and Mastercard as financial infrastructure providers, emphasizing transaction scale, revenue efficiency, and margin durability.
+PaymentRails is a financial market analytics project that examines how global payment networks compete within the broader financial ecosystem. Rather than focusing on consumer-facing payment products, the project frames Visa and Mastercard as financial infrastructure providers that operate large-scale transaction networks.
 
-Using publicly available market and financial data, the project compares how these networks differ across market performance, growth characteristics, and profitability.
+Using publicly available financial and market data, the project analyzes differences in market performance, risk characteristics, financial fundamentals, and global revenue exposure between the two payment networks. The analysis is delivered through an end-to-end analytics pipeline combining Python data ingestion, SQL-based analytics processing, and interactive Tableau dashboards.
 
 ---
 
 ## Analytical Objectives
 
-- Compare the long-term market performance of Visa and Mastercard  
-- Analyze differences in scale, revenue growth, and profitability  
-- Examine tradeoffs between growth, stability, and margin durability  
-- Identify structural similarities and differences between payment network models  
-- Replicate a realistic market analysis workflow using public data  
+- Compare the long-term market performance of Visa and Mastercard relative to the broader market  
+- Evaluate risk-return dynamics using metrics such as volatility and drawdowns  
+- Analyze revenue growth and profitability trends across both payment networks  
+- Examine structural similarities between asset-light payment infrastructure businesses  
+- Build an end-to-end financial analytics workflow integrating Python, SQL, Excel, and Tableau
 
 ---
 
@@ -96,17 +98,21 @@ Visa and Mastercard represent two of the largest and most established players in
 - Indexed stock price trends  
 - Relative returns and volatility  
 
-### Scale & Transaction Activity
-- Reported payment volume as a proxy for network scale  
-- Growth trends in transaction activity  
+### Risk & Return
+- Volatility comparisons across payment networks and the broader market  
+- Drawdown analysis highlighting peak-to-trough declines  
 
-### Revenue & Monetization
+### Financial Fundamentals
 - Revenue growth over time  
-- Monetization efficiency indicators  
+- Operating margin and profitability trends  
 
-### Profitability
-- Gross and operating margin trends  
-- Margin stability across cycles  
+### Market Correlation
+- Relationship between payment network returns and the broader market  
+- Comparative sensitivity of Visa and Mastercard to market movements  
+
+### Global Revenue Exposure
+- Geographic revenue distribution across major regions  
+- Comparative international diversification between payment networks
 
 ---
 
@@ -139,6 +145,14 @@ This dashboard explores company fundamentals including revenue growth, profitabi
 
 ---
 
+### 4. Market Correlation Analysis
+This dashboard analyzes the relationship between payment network returns and the broader market by examining daily return correlations and comparative sensitivity to market movements.
+
+---
+
+### 5. Global Payment Network Footprint
+This dashboard visualizes geographic revenue exposure across major regions, illustrating how Visa and Mastercard generate revenue globally and highlighting differences in international diversification.
+
 ## Visualization Approach
 
 Dashboards are built using Tableau Public and Excel to support exploratory financial analysis. The visualizations emphasize comparative analysis across market performance, scale, and profitability while maintaining a clear analytical narrative.
@@ -155,6 +169,8 @@ PaymentRails/
 │   ├── financial_load.py
 │   ├── data_transformation.py
 │   ├── metrics_build.py
+│   ├── correlation_metrics.py
+│   ├── geographic_metrics.py
 │   └── tableau_export.py
 │
 ├── data/
@@ -164,6 +180,8 @@ PaymentRails/
 │       ├── market_metrics.csv
 │       ├── summary_metrics.csv
 │       └── financials.csv
+│       ├── correlation_metrics.csv
+│       └── geographic_revenue.csv
 │
 ├── sql/
 │   ├── analytics/
@@ -187,11 +205,11 @@ PaymentRails/
 ```
 ## How to Run
 
-1. **Pull historical market data**
+### 1. Pull historical market data
 
 Run the ingestion script to download historical stock price data for Visa, Mastercard, and the S&P 500.
 
-```
+```bash
 python src/stock_load.py
 ```
 
@@ -203,65 +221,87 @@ data/raw/market_prices.csv
 
 ---
 
-2. **Load financial fundamentals**
+### 2. Load financial fundamentals
 
 Run the financial ingestion script to build the fundamentals dataset used in the analysis.
 
-```
+```bash
 python src/financial_load.py
 ```
 
-This generates the financial dataset used for revenue, profitability, and margin analysis.
+This generates the dataset used for revenue, profitability, and margin analysis.
 
 ---
 
-3. **Transform and clean the datasets**
+### 3. Transform and prepare datasets
 
-Run the transformation script to normalize and prepare the datasets for analytics processing.
+Normalize and clean the datasets before loading them into the analytics layer.
 
-```
+```bash
 python src/data_transformation.py
 ```
 
 ---
 
-4. **Build analytics metrics**
+### 4. Build core market analytics metrics
 
-Generate derived metrics used in the dashboards and analysis.
+Generate derived metrics used in the financial analysis and dashboards.
 
-```
+```bash
 python src/metrics_build.py
 ```
 
-This step calculates metrics such as:
+This step computes key analytics metrics including:
 
 - Daily returns  
-- Volatility  
-- Summary market metrics  
+- Rolling volatility  
+- Summary market statistics  
 
 ---
 
-5. **Run SQL analytics layer**
+### 5. Generate extended analytics datasets
 
-Execute the SQL scripts to create the cleaned market tables and analytics metrics.
+Run additional analytics scripts used for advanced dashboards.
 
-```
-sql/schema/raw_market_prices.sql
-sql/schema/clean_market_prices.sql
-sql/analytics/daily_returns.sql
-sql/analytics/volatility.sql
-sql/analytics/market_metrics.sql
+```bash
+python src/correlation_metrics.py
+python src/geographic_metrics.py
 ```
 
-These scripts compute the core analytics metrics used to compare Visa, Mastercard, and the S&P 500 across performance, volatility, and drawdown characteristics.
+These scripts generate datasets used for:
+
+- Market correlation analysis between payment networks and the broader market
+- Geographic revenue exposure across major global regions
 
 ---
 
-6. **Export BI-ready datasets**
+### 6. Run SQL analytics layer
 
-Export the analytics tables for visualization.
+Open a MySQL session and select the project database:
 
+```sql
+USE paymentrails;
 ```
+
+Execute the schema and analytics scripts:
+
+```sql
+SOURCE sql/schema/raw_market_prices.sql;
+SOURCE sql/schema/clean_market_prices.sql;
+SOURCE sql/analytics/daily_returns.sql;
+SOURCE sql/analytics/volatility.sql;
+SOURCE sql/analytics/market_metrics.sql;
+```
+
+These scripts compute the analytics tables used to compare Visa, Mastercard, and the S&P 500 across performance and risk metrics.
+
+---
+
+### 7. Export BI-ready datasets
+
+Export the final analytics tables for visualization.
+
+```bash
 python src/tableau_export.py
 ```
 
@@ -273,11 +313,11 @@ data/analytics/
 
 ---
 
-7. **Open visualization and analysis files**
+### 8. Open visualization and analysis tools
 
-The exported datasets are used in:
+The exported datasets power:
 
-- **Tableau Public dashboards** for visualization  
+- **Tableau Public dashboards** for interactive visualization  
 - **Excel workbook (`excel/MarketAnalytics.xlsx`)** for additional exploratory financial analysis
 
 ---
@@ -286,12 +326,13 @@ The exported datasets are used in:
 
 Initial analysis highlights several structural similarities between Visa and Mastercard:
 
-- Both payment networks have significantly outperformed the broader market over long horizons.
-- Mastercard exhibits slightly higher volatility and deeper historical drawdowns.
-- Visa shows a marginally more stable risk profile while maintaining comparable growth.
-- Both firms benefit from scalable, asset-light business models driven by strong network effects.
+- Both payment networks have significantly outperformed the broader market over long horizons, reflecting the scalability and durability of the global payments infrastructure model.
+- Mastercard exhibits slightly higher volatility and deeper historical drawdowns, indicating marginally higher sensitivity to market cycles.
+- Visa demonstrates a somewhat more stable risk profile while maintaining comparable long-term growth and market performance.
+- Both firms benefit from asset-light operating models driven by strong global network effects, enabling high operating margins and consistent revenue growth.
 
-These patterns reinforce the durability of global payment infrastructure as a long-term business model.
+Together, these findings highlight the structural advantages of global payment networks and their ability to generate durable long-term performance.
+
 ---
 
 ## Notes & Limitations
