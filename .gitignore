@@ -213,3 +213,6 @@ data/analytics
 
 #excel
 ExcelDashboard.xlsx
+
+#images
+images/

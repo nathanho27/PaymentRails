@@ -2,7 +2,7 @@
 
 ## Visa and Mastercard: Market & Competitive Analysis
 
-Market and competitive analysis of global payment networks, focusing on Visa and Mastercard, using public financial and market data to study scale, growth, and profitability dynamics through interactive BI dashboards.
+Market and competitive analysis of global payment networks, focusing on Visa and Mastercard. Using public financial and market data, this project explores differences in market performance, scale, growth, and profitability through an end-to-end analytics workflow and interactive BI dashboards.
 
 ---
 
@@ -19,19 +19,18 @@ Market and competitive analysis of global payment networks, focusing on Visa and
 - [Visualization Approach](#visualization-approach)
 - [Project Structure](#project-structure)
 - [How to Run](#how-to-run)
-- [Current Progress](#current-progress)
-- [Planned Work](#planned-work)
+- [Key Insights](#key-insights)
 - [Notes & Limitations](#notes--limitations)
 
 ---
 
 ## Status
 
-**In Progress**
+**Completed**
 
-The core data pipeline is complete. Python scripts ingest market and financial data, MySQL is used to compute analytics metrics (daily returns and rolling volatility), and final BI-ready datasets are exported for visualization.
+The full data pipeline, analytics layer, and visualization components have been implemented.
 
-Current focus is on building visualization dashboards using Tableau and Excel.
+Python scripts ingest market and financial data, MySQL computes market analytics metrics such as daily returns and rolling volatility, and BI-ready datasets are exported for visualization in Tableau and Excel.
 
 ---
 
@@ -72,10 +71,10 @@ Visa and Mastercard represent two of the largest and most established players in
 
 ## Methodology
 
-- Pull raw market and financial data using Python  
-- Clean and normalize datasets using SQL transformations
-- Compute derived metrics (daily returns, rolling volatility) using SQL window functions, with Python used for ingestion and export of BI-ready datasets.
-- Export analysis-ready tables for Tableau Public  
+- Pull raw market and financial data using Python.
+- Clean and normalize datasets using SQL transformations.
+- Compute derived metrics such as daily returns and rolling volatility using SQL window functions. Python is used for ingestion and exporting BI-ready datasets.
+- Export analysis-ready tables for Tableau Public. 
 
 ---
 
@@ -113,17 +112,36 @@ Visa and Mastercard represent two of the largest and most established players in
 
 ## Dashboards
 
-1. Market Performance Overview  
-2. Revenue & Growth Trends  
-3. Scale & Transaction Activity  
-4. Profitability & Margins  
-5. Competitive Summary  
+### 1. Payment Network Market Analysis
+• The published Tableau dashboard can be found [here](https://public.tableau.com/app/profile/nathan.ho2158/viz/PaymentNetworkMarketAnalysis/PaymentNetworkAnalysis)
+
+![Payment Network Market Analysis](dashboards/PaymentMarketAnalysis.png)
+
+This dashboard provides a high-level comparison of Visa and Mastercard across market performance and financial metrics. The goal is to highlight differences in growth, scale, and long-term market behavior between the two payment networks.
+
+---
+
+### 2. Risk vs Return Analysis
+• The published Tableau dashboard can be found [here](http://public.tableau.com/app/profile/nathan.ho2158/viz/RiskVsReturnAnalysis/RiskvsReturnAnalysis)
+
+![Risk vs Return Analysis](dashboards/RiskVsReturnAnalysis.png)
+
+This dashboard focuses on risk-return characteristics of Visa and Mastercard relative to the broader market. Using derived metrics such as daily returns and volatility, it visualizes how the two companies compare in terms of performance stability and market risk.
+
+---
+
+### 3. Financial Performance Analysis
+• The published Tableau dashboard can be found [here](https://public.tableau.com/app/profile/nathan.ho2158/viz/FinancialPerformanceAnalysis_17726872075600/FinancialPerformanceAnalysis)
+
+![Financial Performance Analysis](dashboards/FinancialPerformanceAnalysis.png)
+
+This dashboard explores company fundamentals including revenue growth, profitability, and margin performance. The analysis highlights how the operating economics of Visa and Mastercard differ despite their similar positions within the payment network ecosystem.
 
 ---
 
 ## Visualization Approach
 
-Dashboards are built in Tableau Public and designed for exploratory comparison rather than operational reporting, prioritizing clarity and narrative flow.
+Dashboards are built using Tableau Public and Excel to support exploratory financial analysis. The visualizations emphasize comparative analysis across market performance, scale, and profitability while maintaining a clear analytical narrative.
 
 ---
 
@@ -141,7 +159,11 @@ PaymentRails/
 │
 ├── data/
 │   ├── raw/
+│   │   └── market_prices.csv
 │   └── analytics/
+│       ├── market_metrics.csv
+│       ├── summary_metrics.csv
+│       └── financials.csv
 │
 ├── sql/
 │   ├── analytics/
@@ -153,44 +175,127 @@ PaymentRails/
 │       └── clean_market_prices.sql
 │
 ├── dashboards/
-├── docs/
+│   ├── PaymentMarketAnalysis.png
+│   ├── RiskVsReturnAnalysis.png
+│   └── FinancialPerformanceAnalysis.png
+│
 ├── excel/
+│   └── MarketAnalytics.xlsx
+│
 └── README.md
+
 ```
 ## How to Run
 
-1. Pull historical market data: python src/stock_load.py
-2. Load `data/raw/market_prices.csv` into MySQL.
+1. **Pull historical market data**
 
-3. Execute SQL schema and analytics scripts:
-- `raw_market_prices.sql`
-- `clean_market_prices.sql`
-- `daily_returns.sql`
-- `volatility.sql`
-- `market_metrics.sql`
+Run the ingestion script to download historical stock price data for Visa, Mastercard, and the S&P 500.
 
-4. Export the analytics-ready table for visualization.
+```
+python src/stock_load.py
+```
 
-5. Load the final dataset into Excel or Tableau for dashboard development.
+This script saves the raw dataset to:
+
+```
+data/raw/market_prices.csv
+```
 
 ---
 
-## Current Progress
-- Implemented Python ingestion for Visa, Mastercard, and market index data  
-- Built MySQL analytics layer with daily returns and rolling volatility  
-- Created financial fundamentals dataset (revenue, income, margins)  
-- Exported BI-ready datasets for visualization in Excel and Tableau
-  
-## Planned Work
-- Build a one-sheet Excel dashboard
-- Develop interactive Tableau Public dashboards  
-- Extend analytics with additional risk metrics (e.g., rolling beta)  
-- Refine competitive positioning insights
+2. **Load financial fundamentals**
 
+Run the financial ingestion script to build the fundamentals dataset used in the analysis.
+
+```
+python src/financial_load.py
+```
+
+This generates the financial dataset used for revenue, profitability, and margin analysis.
+
+---
+
+3. **Transform and clean the datasets**
+
+Run the transformation script to normalize and prepare the datasets for analytics processing.
+
+```
+python src/data_transformation.py
+```
+
+---
+
+4. **Build analytics metrics**
+
+Generate derived metrics used in the dashboards and analysis.
+
+```
+python src/metrics_build.py
+```
+
+This step calculates metrics such as:
+
+- Daily returns  
+- Volatility  
+- Summary market metrics  
+
+---
+
+5. **Run SQL analytics layer**
+
+Execute the SQL scripts to create the cleaned market tables and analytics metrics.
+
+```
+sql/schema/raw_market_prices.sql
+sql/schema/clean_market_prices.sql
+sql/analytics/daily_returns.sql
+sql/analytics/volatility.sql
+sql/analytics/market_metrics.sql
+```
+
+These scripts compute the core analytics metrics used to compare Visa, Mastercard, and the S&P 500 across performance, volatility, and drawdown characteristics.
+
+---
+
+6. **Export BI-ready datasets**
+
+Export the analytics tables for visualization.
+
+```
+python src/tableau_export.py
+```
+
+This generates CSV files in:
+
+```
+data/analytics/
+```
+
+---
+
+7. **Open visualization and analysis files**
+
+The exported datasets are used in:
+
+- **Tableau Public dashboards** for visualization  
+- **Excel workbook (`excel/MarketAnalytics.xlsx`)** for additional exploratory financial analysis
+
+---
+
+## Key Insights
+
+Initial analysis highlights several structural similarities between Visa and Mastercard:
+
+- Both payment networks have significantly outperformed the broader market over long horizons.
+- Mastercard exhibits slightly higher volatility and deeper historical drawdowns.
+- Visa shows a marginally more stable risk profile while maintaining comparable growth.
+- Both firms benefit from scalable, asset-light business models driven by strong network effects.
+
+These patterns reinforce the durability of global payment infrastructure as a long-term business model.
 ---
 
 ## Notes & Limitations
 
-This project uses public financial data and focuses on descriptive, comparative analysis rather than forecasting or investment recommendations.
+This project uses publicly available financial and market data and focuses on descriptive comparative analysis rather than forecasting or investment recommendations.
 
-This project marks a shift in my Python coding style, where I moved from CamelCase to snake_case for functions, variables, and filenames to align with Python consistency.
+The project also reflects a transition in my Python coding style from CamelCase to snake_case for functions, variables, and filenames to better align with Python development conventions.
