@@ -16,7 +16,7 @@ Market and competitive analysis of global payment networks, focusing on Visa and
 - [Tools & Technologies](#tools--technologies)
 - [Core Analytical Dimensions](#core-analytical-dimensions)
 - [Dashboards](#dashboards)
-- [Visualization Approach](#visualization-approach)
+- [Visualization & Dashboard Design](#visualization--dashboard-design)
 - [Project Structure](#project-structure)
 - [How to Run](#how-to-run)
 - [Key Insights](#key-insights)
@@ -26,7 +26,7 @@ Market and competitive analysis of global payment networks, focusing on Visa and
 
 ## Status
 
-**In Progress**
+**Complete**
 
 The full data pipeline, analytics layer, and visualization dashboards have been implemented.
 
@@ -146,16 +146,23 @@ This dashboard explores company fundamentals including revenue growth, profitabi
 ---
 
 ### 4. Market Correlation Analysis
+• The published Tableau dashboard can be found [here](https://public.tableau.com/app/profile/nathan.ho2158/viz/MarketRelationshipAnalysis/MarketRelationshipAnalysis)
+
+![Market Relationship Analysis](dashboards/MarketRelationshipAnalysis.png)
 This dashboard analyzes the relationship between payment network returns and the broader market by examining daily return correlations and comparative sensitivity to market movements.
 
 ---
 
 ### 5. Market Regime Analysis
+• The published Tableau dashboard can be found [here](https://public.tableau.com/app/profile/nathan.ho2158/viz/MarketVolatilityAnalysis/Dashboard1)
+
+![Market Volatility Analysis](dashboards/MarketVolatilityAnalysis.png)
+
 This dashboard examines how Visa and Mastercard perform across different market volatility environments. Using S&P 500 volatility as a proxy for overall market conditions, the analysis classifies periods into low, moderate, and high volatility regimes and evaluates how payment network returns behave within each environment.
 
 The dashboard highlights differences in performance stability, risk-adjusted returns, and relative outperformance versus the broader market during periods of market stress and calm conditions.
 
-## Visualization Approach
+## Visualization & Dashboard Design
 
 Dashboards are built using Tableau Public and Excel to support exploratory financial analysis. The visualizations emphasize comparative analysis across market performance, scale, and profitability while maintaining a clear analytical narrative.
 
@@ -198,6 +205,8 @@ PaymentRails/
 │   ├── PaymentNetworkAnalysis.png
 │   ├── RiskVsReturnAnalysis.png
 │   └── FinancialPerformanceAnalysis.png
+│   ├── MarketRelationshipAnalysis.png
+│   └── MarketVolatilityAnalysis.png
 │
 ├── excel/
 │   └── MarketAnalytics.xlsx
