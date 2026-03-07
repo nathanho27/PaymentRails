@@ -28,11 +28,11 @@ Market and competitive analysis of global payment networks, focusing on Visa and
 
 **In Progress**
 
-The core data pipeline, analytics layer, and primary visualization dashboards have been implemented.
+The full data pipeline, analytics layer, and visualization dashboards have been implemented.
 
-Python scripts ingest market and financial data, a MySQL analytics layer computes derived metrics such as daily returns and volatility, and analysis-ready datasets are exported for use in Tableau and Excel. Interactive dashboards visualize market performance, risk-return dynamics, and financial fundamentals for Visa and Mastercard.
+Python scripts ingest market and financial data, a MySQL analytics layer computes derived metrics such as daily returns and volatility, and analysis-ready datasets are exported for use in Tableau and Excel.
 
-Additional analytical dashboards exploring market correlation and geographic revenue exposure are being developed to extend the comparative analysis.
+Interactive dashboards visualize market performance, risk-return dynamics, financial fundamentals, market relationships, and performance across different market volatility regimes.
 
 ---
 
@@ -40,7 +40,7 @@ Additional analytical dashboards exploring market correlation and geographic rev
 
 PaymentRails is a financial market analytics project that examines how global payment networks compete within the broader financial ecosystem. Rather than focusing on consumer-facing payment products, the project frames Visa and Mastercard as financial infrastructure providers that operate large-scale transaction networks.
 
-Using publicly available financial and market data, the project analyzes differences in market performance, risk characteristics, financial fundamentals, and global revenue exposure between the two payment networks. The analysis is delivered through an end-to-end analytics pipeline combining Python data ingestion, SQL-based analytics processing, and interactive Tableau dashboards.
+Using publicly available financial and market data, the project analyzes differences in market performance, risk characteristics, financial fundamentals, and behavior across different market volatility environments between the two payment networks. The analysis is delivered through an end-to-end analytics pipeline combining Python data ingestion, SQL-based analytics processing, and interactive Tableau dashboards.
 
 ---
 
@@ -110,9 +110,9 @@ Visa and Mastercard represent two of the largest and most established players in
 - Relationship between payment network returns and the broader market  
 - Comparative sensitivity of Visa and Mastercard to market movements  
 
-### Global Revenue Exposure
-- Geographic revenue distribution across major regions  
-- Comparative international diversification between payment networks
+### Market Regime Behavior
+- Performance analysis across different market volatility environments  
+- Comparison of returns, volatility, and risk-adjusted performance during low, moderate, and high volatility regimes
 
 ---
 
@@ -150,8 +150,10 @@ This dashboard analyzes the relationship between payment network returns and the
 
 ---
 
-### 5. Global Payment Network Footprint
-This dashboard visualizes geographic revenue exposure across major regions, illustrating how Visa and Mastercard generate revenue globally and highlighting differences in international diversification.
+### 5. Market Regime Analysis
+This dashboard examines how Visa and Mastercard perform across different market volatility environments. Using S&P 500 volatility as a proxy for overall market conditions, the analysis classifies periods into low, moderate, and high volatility regimes and evaluates how payment network returns behave within each environment.
+
+The dashboard highlights differences in performance stability, risk-adjusted returns, and relative outperformance versus the broader market during periods of market stress and calm conditions.
 
 ## Visualization Approach
 
@@ -170,7 +172,7 @@ PaymentRails/
 │   ├── data_transformation.py
 │   ├── metrics_build.py
 │   ├── correlation_metrics.py
-│   ├── geographic_metrics.py
+│   ├── regime_metrics.py
 │   └── tableau_export.py
 │
 ├── data/
@@ -179,9 +181,9 @@ PaymentRails/
 │   └── analytics/
 │       ├── market_metrics.csv
 │       ├── summary_metrics.csv
-│       └── financials.csv
+│       ├── financials.csv
 │       ├── correlation_metrics.csv
-│       └── geographic_revenue.csv
+│       └── regime_metrics.csv
 │
 ├── sql/
 │   ├── analytics/
@@ -265,13 +267,13 @@ Run additional analytics scripts used for advanced dashboards.
 
 ```bash
 python src/correlation_metrics.py
-python src/geographic_metrics.py
+python src/regime_metrics.py
 ```
 
 These scripts generate datasets used for:
 
 - Market correlation analysis between payment networks and the broader market
-- Geographic revenue exposure across major global regions
+- Market regime analysis examining performance across different volatility environments
 
 ---
 
