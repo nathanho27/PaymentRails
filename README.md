@@ -26,7 +26,7 @@ Market and competitive analysis of global payment networks, focusing on Visa and
 
 ## Status
 
-**Complete**
+**In Progress**
 
 The full data pipeline, analytics layer, and visualization dashboards have been implemented.
 
@@ -34,6 +34,7 @@ Python scripts ingest market and financial data, a MySQL analytics layer compute
 
 Interactive dashboards visualize market performance, risk-return dynamics, financial fundamentals, market relationships, and performance across different market volatility regimes.
 
+The status of the project was changed to in progress because I am currently working on a presentation that I will add to this github repository and linkedin.
 ---
 
 ## Overview
